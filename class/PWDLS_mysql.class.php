@@ -15,7 +15,7 @@ class PWDLS_mysql
 
     private function __construct($id = 0)
     {
-        $base = include_once('../conf/mysql--dostup-cfg.php');
+        $base = include('../conf/mysql--dostup-cfg.php');
         if (!empty($base[$id])) {
             $this->host = '127.0.0.1';
             $this->db = 'tehpas';
