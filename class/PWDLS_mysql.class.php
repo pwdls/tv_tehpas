@@ -15,12 +15,12 @@ class PWDLS_mysql
 
     private function __construct($id = 0)
     {
-        $base = include('../conf/mysql--dostup-cfg.php');
+        $base = require(__DIR__ . '/../conf/mysql--dostup-cfg.php');
         if (!empty($base[$id])) {
-            $this->host = '127.0.0.1';
-            $this->db = 'tehpas';
-            $this->user = 'root';
-            $this->pass = '';
+            $this->host = $base[$id]['host'];
+            $this->db = $base[$id]['db'];
+            $this->user = $base[$id]['user'];
+            $this->pass = $base[$id]['pass'];
 
             $this->mysql = new \mysqli($this->host, $this->user, $this->pass, $this->db);
             if (!$this->mysql) {

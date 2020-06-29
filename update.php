@@ -4,8 +4,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 
-define('ARHIV', filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . include_once ("conf/whereArhiv--dir-cfg.php"));
-include_once 'class/PWDLS_mysql.class.php';
+define('ARHIV', __DIR__ . include_once ("conf/whereArhiv--dir-cfg.php"));
+include_once('class/PWDLS_mysql.class.php');
 
 
 function main(){
@@ -53,9 +53,9 @@ function getSelect($data){
     $ob = PWDLS_mysql::getMySQL($select);
 
     if($ob[0]['result'] == 0){
-        $result = "INSERT INTO TV_TEHPAS (tv_guid, tv_data) VALUES ('" . $guid->guid . "', ' . $data . ');";
+        $result = "INSERT INTO TV_TEHPAS (tv_guid, tv_data) VALUES ('" . $guid->guid . "', '" . addslashes($data) . "');";
     } else {
-        $result = "UPDATE TV_TEHPAS SET tv_data = ' " . $data . "' WHERE tv_guid = '" . $guid->guid . "';";
+        $result = "UPDATE TV_TEHPAS SET tv_data = '" . addslashes($data) . "' WHERE tv_guid = '" . $guid->guid . "';";
     }
 
     return $result;
