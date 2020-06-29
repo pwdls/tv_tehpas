@@ -1,4 +1,9 @@
 <?php
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+
 define('ARHIV', filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . include_once ("conf/whereArhiv--dir-cfg.php"));
 include_once 'class/PWDLS_mysql.class.php';
 

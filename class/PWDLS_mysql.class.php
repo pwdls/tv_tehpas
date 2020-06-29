@@ -42,7 +42,6 @@ class PWDLS_mysql
                 $i++;
             }
         } else {
-            echo $mas;
             $res = $foo->mysql->query($mas);
         }
         $foo->mysql->close();
