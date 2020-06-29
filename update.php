@@ -4,12 +4,12 @@
 // ini_set('display_startup_errors', 1);
 
 
-define('ARHIV', __DIR__ . include_once ("conf/whereArhiv--dir-cfg.php"));
+define('ARHIV', include_once ("conf/whereArhiv--dir-cfg.php"));
 include_once('class/PWDLS_mysql.class.php');
 
 
 function main(){
-    $dir = include_once("conf/whereToGetFoles--file-cfg.php");
+    $dir = include_once("conf/whereToGetFales--file-cfg.php");
     $arrDir = getArrDir($dir);
 
     foreach ($arrDir as $value){
