@@ -49,13 +49,13 @@ function setData($dir, $file){
 
 function getSelect($data){
     $guid = json_decode($data);
-    $select = 'select count(*) as result FROM TV_TEHPAS WHERE tv_guid = "' . $guid->guid . '";';
+    $select = 'select count(*) as result FROM tv_tehpas WHERE tv_guid = "' . $guid->guid . '";';
     $ob = PWDLS_mysql::getMySQL($select);
 
     if($ob[0]['result'] == 0){
-        $result = "INSERT INTO TV_TEHPAS (tv_guid, tv_data) VALUES ('" . $guid->guid . "', '" . addslashes($data) . "');";
+        $result = "INSERT INTO tv_tehpas (tv_guid, tv_data) VALUES ('" . $guid->guid . "', '" . addslashes($data) . "');";
     } else {
-        $result = "UPDATE TV_TEHPAS SET tv_data = '" . addslashes($data) . "' WHERE tv_guid = '" . $guid->guid . "';";
+        $result = "UPDATE tv_tehpas SET tv_data = '" . addslashes($data) . "' WHERE tv_guid = '" . $guid->guid . "';";
     }
 
     return $result;
