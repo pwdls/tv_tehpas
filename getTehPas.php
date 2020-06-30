@@ -7,5 +7,7 @@ if(!empty($guid)){
     $ob = PWDLS_mysql::getMySQL($select);
     if($ob){
         echo $ob[0]['tv_data'];
+    } else {
+        echo '{"result":"1"}';
     }
 }
