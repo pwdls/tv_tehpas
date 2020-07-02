@@ -3,10 +3,7 @@
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 
-
 define('ARHIV', include_once("conf/whereArhiv--dir-cfg.php"));
-include_once('class/PWDLS_mysql.class.php');
-
 
 function main()
 {
@@ -16,13 +13,6 @@ function main()
     foreach ($arrDir as $value) {
         setData($dir, $value);
     }
-}
-
-function foo($foo)
-{
-    echo '<pre>';
-    var_dump($foo);
-    echo '</pre>';
 }
 
 function getArrDir($dir)
@@ -46,27 +36,9 @@ function setData($dir, $file)
     $guid = json_decode($result);
 
     if (!empty($guid->guid) && $guid->result == 0) {
-        $select = getSelect($result);
-        PWDLS_mysql::getMySQL($select);
-
         arhive($guid->guid, $dir, $file);
     }
 
-}
-
-function getSelect($data)
-{
-    $guid = json_decode($data);
-    $select = 'select count(*) as result FROM tv_tehpas WHERE tv_guid = "' . $guid->guid . '";';
-    $ob = PWDLS_mysql::getMySQL($select);
-
-    if ($ob[0]['result'] == 0) {
-        $result = "INSERT INTO tv_tehpas (tv_guid, tv_data) VALUES ('" . $guid->guid . "', '" . addslashes($data) . "');";
-    } else {
-        $result = "UPDATE tv_tehpas SET tv_data = '" . addslashes($data) . "' WHERE tv_guid = '" . $guid->guid . "';";
-    }
-
-    return $result;
 }
 
 function arhive($name, $lastDir, $fileName)
@@ -85,6 +57,13 @@ function btw($b1)
     $b1 = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $b1);
     $b1 = str_replace(array("\r\n", "\r", "\n", "\t"), '', $b1);
     return $b1;
+}
+
+function foo($foo)
+{
+    echo '<pre>';
+    var_dump($foo);
+    echo '</pre>';
 }
 
 main();
